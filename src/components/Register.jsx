@@ -74,7 +74,8 @@ const Register = () => {
     }, [user, pwd, matchPwd])
 
     const checkRoles = (role) => {
-        let newRole;
+        let newRole
+        
         switch(role){
             case "Editor": 
                 return newRole = {

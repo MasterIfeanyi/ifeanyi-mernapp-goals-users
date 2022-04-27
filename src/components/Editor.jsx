@@ -1,10 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import EditUsers from "./EditUsers";
 import { FaPlus } from "react-icons/fa";
 import useAxiosPrivate from "../hooks/useAxiosPrivate";
-import { useNavigate } from 'react-router-dom';
-import useAuth from "../hooks/useAuth"
-import axios from "axios";
+
 
 const Editor = () => {
 
@@ -15,9 +13,6 @@ const Editor = () => {
   // import axiosPrivate hook
   const axiosPrivate = useAxiosPrivate();
 
-  const navigate = useNavigate();
-
-  const { auth } = useAuth();
 
 
   const handleSubmit = async (id) => {
@@ -37,7 +32,6 @@ const Editor = () => {
       // });
       await axiosPrivate.put(`/users/${id}`, JSON.stringify({ username: editUser }));
       setEditUser("");
-      // navigate("/");
     } catch (error) {
       console.error(error.message);
     }
