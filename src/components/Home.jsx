@@ -11,8 +11,6 @@ const Home = () => {
   }, [])
 
   function AlertDismissibleExample() {
-    const [show, setShow] = useState(true);
-
     if (show) {
       return (
         <Alert variant="success" onClose={() => setShow(false)} dismissible>

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { useNavigate, useLocation } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import { FaPlus } from "react-icons/fa"
 import useAxiosPrivate from "../hooks/useAxiosPrivate";
 import { useParams } from "react-router-dom";
@@ -11,7 +11,7 @@ const EditGoal = () => {
 
     const navigate = useNavigate();
 
-    const axiosPrivate = useAxiosPrivate();
+    const goalPrivate = useAxiosPrivate();
 
     const { id } = useParams();
     const goal = goals.find(goal => (goal._id).toString() === id);
@@ -28,7 +28,7 @@ const EditGoal = () => {
         e.preventDefault();
         const data = {text: editGoal}
         try {
-            await axiosPrivate.put(`/goals/${id}`, data);
+            await goalPrivate.put(`/goals/${id}`, data);
             setEditGoal("");
             navigate("/");
         } catch (error) {

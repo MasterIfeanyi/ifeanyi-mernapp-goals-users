@@ -1,20 +1,22 @@
-import React, { useEffect, useState, useMemo } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useNavigate, useLocation } from "react-router-dom"
 import {FaPlus} from "react-icons/fa"
-import useAxiosPrivate from "../hooks/useAxiosPrivate";
+import useGoalPrivate from "../hooks/useGoalPrivate";
 import Goal from "./Goal"
 import useAuth from '../hooks/useAuth';
 
 const CreateNotes = () => {
 
-    const {goals, setGoals} = useAuth()
-    const [text, setText] = useState("")
+    const { goals, setGoals } = useAuth();
+
+
+    const [text, setText] = useState("");
 
     const navigate = useNavigate();
     const location = useLocation();
 
     
-    const axiosPrivate = useAxiosPrivate();
+    const goalPrivate = useGoalPrivate();
 
 
 
@@ -25,7 +27,7 @@ const CreateNotes = () => {
 
         const getGoals = async () => {
             try {
-                const response = await axiosPrivate.get("/goals", {
+                const response = await goalPrivate.get("/goals", {
                     // option to cancel request
                     signal: controller.signal
                 })
@@ -34,28 +36,28 @@ const CreateNotes = () => {
                 isMounted && setGoals(response?.data);
             } catch (error) {
                 console.error(error);
+                // when refreshToken expires
+                navigate("/login", { state: { from: location }, replace: true });
             }
         }
 
-
         getGoals();
-        
-        
 
         // cleanup function
         return () => {
             // don't set state if component unmounts
             isMounted = false;
             // cancel request if component unmounts
-            controller.abort();
+            // controller.abort();
         }
     }, [])
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         const data = { text }
+        if(!text) return
         try {
-            await axiosPrivate.post("/goals", data)
+            await goalPrivate.post("/goals", data)
             setText("")
         } catch (error) {
             console.error(error.message)
@@ -64,7 +66,7 @@ const CreateNotes = () => {
 
     const handleDelete = async (id) => {
         try {
-            await axiosPrivate.delete(`/goals/${id}`)
+            await goalPrivate.delete(`/goals/${id}`)
         } catch (error) {
             console.error(error.message)
         }

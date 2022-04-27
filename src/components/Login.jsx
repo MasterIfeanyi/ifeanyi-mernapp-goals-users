@@ -6,6 +6,15 @@ import useAuth from '../hooks/useAuth'
 
 const Login = () => {
 
+    // destructure setAuth from our Context
+    const { setAuth } = useAuth();
+
+    const navigate = useNavigate();
+    const location = useLocation();
+
+    // this gets where the user came from 
+    const from = location?.state?.from?.pathname || "/";
+
     const [user, setUser] = useState("");
     const [pwd, setPwd] = useState("");
     const [errMsg, setErrMsg] = useState("");
@@ -24,25 +33,15 @@ const Login = () => {
         setErrMsg('');
     }, [user, pwd])
 
-    // destructure setAuth from our Context
-    const { setAuth } = useAuth();
-
-    const navigate = useNavigate();
-    const location = useLocation();
-
-    // this gets where the user came from 
-    const from = location?.state?.from?.pathname || "/";
-
-
-
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const { data } = await axios.post(LOGIN_URL, { user, pwd }, {
-                // headers: "Content-Type: application/json",
-                withCredentials: true
-            })
+            const { data } = await axios.post(LOGIN_URL, JSON.stringify({ user, pwd }),
+                {
+                    headers: { 'Content-Type': 'application/json' },
+                    withCredentials: true
+                });
 
             const accessToken = data?.accessToken;
             const roles = data?.roles;

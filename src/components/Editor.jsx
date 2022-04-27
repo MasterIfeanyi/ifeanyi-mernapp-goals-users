@@ -1,6 +1,49 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react';
+import EditUsers from "./EditUsers";
+import { FaPlus } from "react-icons/fa";
+import useAxiosPrivate from "../hooks/useAxiosPrivate";
+import { useNavigate } from 'react-router-dom';
+import useAuth from "../hooks/useAuth"
+import axios from "axios";
 
 const Editor = () => {
+
+
+  const [id, setId] = useState("");
+  const [editUser, setEditUser] = useState("");
+
+  // import axiosPrivate hook
+  const axiosPrivate = useAxiosPrivate();
+
+  const navigate = useNavigate();
+
+  const { auth } = useAuth();
+
+
+  const handleSubmit = async (id) => {
+  
+    console.log("helll")
+    console.log(id)
+    const data = { username: editUser }
+    if (!editUser) return
+    try {
+      // await axios({
+      //   method: 'put', //you can set what request you want to be
+      //   url: `http://localhost:3500/users/${id}`,
+      //   data: { username: editUser },
+      //   headers: {
+      //     Authorization: `Bearer ${auth?.accessToken}`
+      //   }
+      // });
+      await axiosPrivate.put(`/users/${id}`, JSON.stringify({ username: editUser }));
+      setEditUser("");
+      // navigate("/");
+    } catch (error) {
+      console.error(error.message);
+    }
+  }
+
+
   return (
     <>
       <section className='section'>
@@ -12,6 +55,36 @@ const Editor = () => {
               <p>You have the ability to Edit a user.</p>
             </div>
           </div>
+        
+
+        
+          <div className="row d-flex justify-content-center">
+            <div className="col-md-7 mb-2">
+              <form action="" className="row" onSubmit={(e) => e.preventDefault()}>
+                <div className="form-group">
+                  <label htmlFor="user" className="">User:</label>
+                  <div className="d-flex">
+                    <input
+                      value={editUser}
+                      onChange={(e) => setEditUser(e.target.value)}
+                      type="text"
+                      autoComplete="off"
+                      id="user"
+                      className="form-control me-2"
+                    />
+                    <button onClick={() => handleSubmit(id)} className="btn btn-primary"><FaPlus /></button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        
+          <EditUsers
+            setId={setId}
+            setEditUser={setEditUser}
+            id={id}
+            editUser={editUser}
+           />
         </div>
       </section>
     </>

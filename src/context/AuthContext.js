@@ -13,11 +13,12 @@ export const AuthProvider = ({children}) => {
 
     const [goals, setGoals] = useState([]);
 
+
     const logout = async () => {
         // if used in more components, this should be in context
         try {
             // axios to /logout endpoint 
-            await axios.get("/logout")
+            await axios.get("/logout");
             navigate('login');
             setAuth({});
         } catch (error) {

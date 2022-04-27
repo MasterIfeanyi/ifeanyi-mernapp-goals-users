@@ -1,15 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import useAxiosPrivate from "../hooks/useAxiosPrivate";
-import User from "./User";
+import EditAUser from "./EditAUser";
 import { useNavigate, useLocation } from "react-router-dom";
 
 
-const Users = () => {
+const Users = ({editUser, setEditUser, id, setId}) => {
+
+    
 
     // testing useRefreshToken hook
     // const refresh = useRefreshToken();
 
     const [users, setUsers] = useState();
+   
+    
 
 
     const navigate = useNavigate();
@@ -51,9 +55,14 @@ const Users = () => {
         }
     }, [])
 
-    const handleDelete = async (id) => {
+    const handleEdit = async (id) => {
         try {
-            await axiosPrivate.delete(`/users/${id}`);
+            const aUser = users.find(user => (user._id).toString() === id);
+
+            if (aUser) {
+                setEditUser(aUser.username);
+            }
+            setId(id);
         } catch (error) {
             console.error(error.message);
         }
@@ -62,27 +71,27 @@ const Users = () => {
 
 
 
-  return (
-    <>
-        <div className="row d-flex justify-content-center">
-            {
-                users?.length
-                    ? (
-                        <>
-                            <h3>Users</h3>
-                            <div className="col-12"> 
-                                {users.map((user, i) => <User key={i} user={user} handleDelete={handleDelete} />)}
+    return (
+        <>
+            <div className="row d-flex justify-content-center">
+                {
+                    users?.length
+                        ? (
+                            <>
+                                <h3>Users</h3>
+                                <div className="col-12">
+                                    {users.map((user, i) => <EditAUser key={i} user={user} handleEdit={handleEdit} />)}
+                                </div>
+                            </>
+                        ) : (
+                            <div className="col-12 intro">
+                                <p className="lead mt-3">No users to display</p>
                             </div>
-                        </>
-                    ) : (
-                        <div className="col-12 intro">
-                            <p className="lead mt-3">No users to display</p>
-                        </div>
-                    )
-            } 
-        </div>
-    </>
-  )
+                        )
+                }
+            </div>
+        </>
+    )
 }
 
 export default Users
