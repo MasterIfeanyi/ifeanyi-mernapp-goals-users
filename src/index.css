@@ -1,0 +1,234 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-size: 1rem;
+}
+
+:root{
+  --color-brand: #b3040d;
+  --color-background: #000;
+  --color-brand-80: rgba(79, 113, 224, 0.8);
+  --color-body: rgb(172, 177, 196);
+  --color-bg-1: rgb(28, 30, 39);
+  --color-bg-2: rgb(38, 41, 53);
+  --font-base: "arial";
+  --box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+  /* --dark: #21201E;
+  --dark2: #2D2B29;
+  --white: #ffffff;
+  --body: #9B968B; */
+
+  /* colors */
+  --primary-100: #e2e0ff;
+  --primary-200: #c1beff;
+  --primary-300: #a29dff;
+  --primary-400: #837dff;
+  --primary-500: #645cff;
+  --primary-600: #504acc;
+  --primary-700: #3c3799;
+  --primary-800: #282566;
+  --primary-900: #141233;
+
+  /* grey */
+  --grey-50: #f8fafc;
+  --grey-100: #f1f5f9;
+  --grey-200: #e2e8f0;
+  --grey-300: #cbd5e1;
+  --grey-400: #94a3b8;
+  --grey-500: #64748b;
+  --grey-600: #475569;
+  --grey-700: #334155;
+  --grey-800: #1e293b;
+  --grey-900: #0f172a;
+  /* rest of the colors */
+  --black: #222;
+  --white: #fff;
+  --red-light: #f8d7da;
+  --red-dark: #842029;
+  --green-light: #d1e7dd;
+  --green-dark: #0f5132;
+}
+
+.link {
+  color: grey
+}
+
+.active {
+  color: red;
+}
+
+
+.navLink{
+  margin-left: 24px;
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: 0.5px;
+  transition: all 0.4s ease;
+  text-decoration: none;
+}
+
+
+a{
+  text-decoration: none;
+  color: #222;
+  transition: all 0.4s ease;
+}
+  
+a:hover{
+  color: var(--color-brand);
+}
+
+body{
+  min-height: 100vh;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+img{
+  width: 100%;
+}
+
+.App{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  min-height: 100vh; 
+}
+
+.section{
+  background-color: whitesmoke;
+  border: 1px solid blue;
+  flex: 1;
+  padding: 1rem 0.5rem;
+}
+
+.home{
+  background-color: whitesmoke;
+  border: 1px solid blue;
+  flex: 1;  
+}
+
+.logOut{
+  box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+}
+
+.myAlert{
+  padding: 10px 10px;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding: 20px 20px;
+  background-color: aqua;
+  border: 2px solid dodgerblue;
+  margin: 10px 0;
+}
+
+.item-text{
+  font-size: 1.2rem;
+  margin: 0;
+  padding: 0;
+}
+
+li{
+  list-style: none;
+}
+
+
+.buttons .btn{
+  margin: 10px;
+}
+
+form .form-control{
+  color: black;
+  border-color: black;
+  background-color: #ddd;
+}
+
+form .form-control:focus{
+  outline: 0;
+  box-shadow: none;
+  background-color: #ddd;
+  border-color: 1px solid red;
+}
+
+form .form-group{
+  text-align: left;
+}
+
+.intro {
+  margin-bottom: 40px;
+  text-align: center;
+}
+
+label {
+  margin-bottom: 1rem;
+}
+
+a, a:visited {
+  color: #fff;
+}
+
+.instructions {
+  font-size: 0.75rem;
+  border-radius: 0.5rem;
+  background: #000;
+  color: #fff;
+  padding: 0.25rem;
+  position: relative;
+  bottom: -10px;
+}
+
+.instructions > svg {
+  margin-right: 0.25rem;
+}
+
+.offscreen {
+  position: absolute;
+  left: -9999px;
+}
+
+.hide {
+  display: none;
+}
+
+.valid {
+  color: limegreen;
+  margin-left: 0.25rem;
+}
+
+.invalid {
+  color: red;
+  margin-left: 0.25rem;
+}
+
+.errmsg {
+  background-color: lightpink;
+  color: firebrick;
+  font-weight: bold;
+  padding: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.line {
+  display: inline-block;
+}
+
+.flexGrow {
+  flex-grow: 1;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-end;
+}
