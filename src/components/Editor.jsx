@@ -19,7 +19,7 @@ const Editor = () => {
   
     console.log("helll")
     console.log(id)
-    const data = { username: editUser }
+    // const data = { username: editUser }
     if (!editUser) return
     try {
       // await axios({

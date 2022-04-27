@@ -75,19 +75,21 @@ const Register = () => {
 
     const checkRoles = (role) => {
         let newRole
-        
         switch(role){
-            case "Editor": 
-                return newRole = {
+            case "Editor":
+                newRole = {
                     "Editor": 1984
                 }
-            case "Admin": 
-                return newRole = {
+                break;
+            case "Admin":
+                newRole = {
                     "Admin": 5150
                 }
+                break;
             default: 
                 return ""
         }
+        return newRole;
     }
 
 
