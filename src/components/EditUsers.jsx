@@ -53,6 +53,7 @@ const Users = ({editUser, setEditUser, id, setId}) => {
             // cancel request if component unmounts
             // controller.abort();
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     const handleEdit = async (id) => {
