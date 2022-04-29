@@ -2,9 +2,9 @@
 
 ## CORS 
 
-I ran into cors issues when creating this project \
+I ran into cors issues when creating this project 
 
-#### The first solution
+#### The first issue
 The first issue I ran into was when I tried to set multiple headers
 
 ```javascript
@@ -16,7 +16,7 @@ res.set({
 [stackoverflow](https://stackoverflow.com/questions/23751914/how-can-i-set-response-header-on-express-js-assets)
 
 
-#### The second solution
+#### The second issue
 The second issue I ran into was when I tried to make a request from my deployed **Netlify** app to my **localhost nodejs server**, I got this \
 ``console.error`` message
 ```javascript
