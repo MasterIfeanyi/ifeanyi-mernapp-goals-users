@@ -4,6 +4,7 @@ import { FaPlus } from "react-icons/fa";
 import useAxiosPrivate from "../hooks/useAxiosPrivate";
 
 
+
 const Editor = () => {
 
 
@@ -16,20 +17,12 @@ const Editor = () => {
 
 
   const handleSubmit = async (id) => {
-  
+   
     console.log("helll")
     console.log(id)
-    // const data = { username: editUser }
+    
     if (!editUser) return
     try {
-      // await axios({
-      //   method: 'put', //you can set what request you want to be
-      //   url: `http://localhost:3500/users/${id}`,
-      //   data: { username: editUser },
-      //   headers: {
-      //     Authorization: `Bearer ${auth?.accessToken}`
-      //   }
-      // });
       await axiosPrivate.put(`/users/${id}`, JSON.stringify({ username: editUser }));
       setEditUser("");
     } catch (error) {
