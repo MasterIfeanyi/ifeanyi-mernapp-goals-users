@@ -232,3 +232,8 @@ a, a:visited {
   justify-content: flex-start;
   align-items: flex-end;
 }
+
+footer{
+  background-color: #007bff;
+  text-align: center;
+}
