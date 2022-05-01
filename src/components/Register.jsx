@@ -86,6 +86,12 @@ const Register = () => {
                     "Admin": 5150
                 }
                 break;
+            case "Both":
+                newRole = {
+                    "Admin": 5150,
+                    "Editor": 1984
+                }
+                break;
             default: 
                 return ""
         }
@@ -216,7 +222,7 @@ const Register = () => {
                                     <input
                                         value={matchPwd}
                                         onChange={(e) => setMatchPwd(e.target.value)}
-                                        type="text"
+                                        type="password"
                                         id="confirm_pwd"
                                         placeholder=''
                                         className="form-control"
@@ -237,6 +243,7 @@ const Register = () => {
                                         <option>Choose a Role</option>
                                         <option value="Editor">Editor</option>
                                         <option value="Admin">Admin</option>
+                                        <option value="Both">Both</option>
                                     </select>
                                 </div>
                                 <div>
