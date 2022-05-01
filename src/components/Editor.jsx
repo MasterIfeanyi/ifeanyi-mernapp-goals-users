@@ -1,12 +1,17 @@
 import React, { useState } from 'react';
 import EditUsers from "./EditUsers";
-import { FaPlus } from "react-icons/fa";
+import useAuth from "../hooks/useAuth";
+import { FaPen } from "react-icons/fa";
 import useAxiosPrivate from "../hooks/useAxiosPrivate";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
+toast.configure();
 
 
 const Editor = () => {
 
+  const { setUsers } = useAuth();
 
   const [id, setId] = useState("");
   const [editUser, setEditUser] = useState("");
@@ -17,14 +22,14 @@ const Editor = () => {
 
 
   const handleSubmit = async (id) => {
-   
-    console.log("helll")
-    console.log(id)
     
     if (!editUser) return
     try {
-      await axiosPrivate.put(`/users/${id}`, JSON.stringify({ username: editUser }));
+      const response = await axiosPrivate.put(`/users/${id}`, JSON.stringify({ username: editUser }));
       setEditUser("");
+      setUsers(response?.data);
+      // inbuilt-notification
+      toast.success('successful')
     } catch (error) {
       console.error(error.message);
     }
@@ -59,7 +64,7 @@ const Editor = () => {
                       id="user"
                       className="form-control me-2"
                     />
-                    <button onClick={() => handleSubmit(id)} className="btn btn-primary"><FaPlus /></button>
+                    <button onClick={() => handleSubmit(id)} className="btn btn-primary"><FaPen /></button>
                   </div>
                 </div>
               </form>

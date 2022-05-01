@@ -2,14 +2,18 @@ import React, { useState, useEffect } from 'react';
 import useAxiosPrivate from "../hooks/useAxiosPrivate";
 import User from "./User";
 import { useNavigate, useLocation } from "react-router-dom";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import useAuth from "../hooks/useAuth"
 
+toast.configure();
 
 const Users = () => {
 
     // testing useRefreshToken hook
     // const refresh = useRefreshToken();
 
-    const [users, setUsers] = useState();
+    const {users, setUsers} = useAuth();
 
 
     const navigate = useNavigate();
@@ -55,7 +59,10 @@ const Users = () => {
 
     const handleDelete = async (id) => {
         try {
-            await axiosPrivate.delete(`/users/${id}`);
+            const response = await axiosPrivate.delete(`/users/${id}`);
+            setUsers(response?.data);
+            // inbuilt-notification
+            toast.success('successful');
         } catch (error) {
             console.error(error.message);
         }

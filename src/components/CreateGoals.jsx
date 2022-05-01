@@ -4,7 +4,10 @@ import {FaPlus} from "react-icons/fa"
 import useGoalPrivate from "../hooks/useGoalPrivate";
 import Goal from "./Goal"
 import useAuth from '../hooks/useAuth';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
+toast.configure();
 const CreateNotes = () => {
 
     const { goals, setGoals } = useAuth();
@@ -59,8 +62,11 @@ const CreateNotes = () => {
         const data = { text }
         if(!text) return
         try {
-            await goalPrivate.post("/goals", data)
-            setText("")
+            const response = await goalPrivate.post("/goals", data)
+            setText("");
+            setGoals(response.data);
+            // inbuilt-notification
+            toast.success('successful');
         } catch (error) {
             console.error(error.message)
         }
@@ -68,7 +74,8 @@ const CreateNotes = () => {
 
     const handleDelete = async (id) => {
         try {
-            await goalPrivate.delete(`/goals/${id}`)
+            const response = await goalPrivate.delete(`/goals/${id}`);
+            setGoals(response.data);
         } catch (error) {
             console.error(error.message)
         }

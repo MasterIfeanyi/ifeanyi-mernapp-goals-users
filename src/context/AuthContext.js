@@ -13,6 +13,8 @@ export const AuthProvider = ({children}) => {
 
     const [goals, setGoals] = useState([]);
 
+    const [users, setUsers] = useState();
+
 
     const logout = async () => {
         // if used in more components, this should be in context
@@ -27,7 +29,7 @@ export const AuthProvider = ({children}) => {
     }
 
     return (
-        <AuthContext.Provider value={{auth, setAuth, goals, setGoals, logout}}>
+        <AuthContext.Provider value={{auth, setAuth, goals, setGoals, users, setUsers, logout}}>
             {children}
         </AuthContext.Provider>
     )

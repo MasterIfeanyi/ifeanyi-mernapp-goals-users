@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import useAxiosPrivate from "../hooks/useAxiosPrivate";
 import EditAUser from "./EditAUser";
 import { useNavigate, useLocation } from "react-router-dom";
+import useAuth from "../hooks/useAuth";
+
 
 
 const Users = ({editUser, setEditUser, id, setId}) => {
@@ -11,7 +13,7 @@ const Users = ({editUser, setEditUser, id, setId}) => {
     // testing useRefreshToken hook
     // const refresh = useRefreshToken();
 
-    const [users, setUsers] = useState();
+    const {users, setUsers} = useAuth();
    
     
 

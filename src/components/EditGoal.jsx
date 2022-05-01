@@ -1,15 +1,22 @@
 import { useState, useEffect } from 'react'
-import { useNavigate } from "react-router-dom"
-import { FaPlus } from "react-icons/fa"
+import { useNavigate, useLocation } from "react-router-dom"
+import { FaPen } from "react-icons/fa"
 import useAxiosPrivate from "../hooks/useAxiosPrivate";
 import { useParams } from "react-router-dom";
 import useAuth from '../hooks/useAuth';
 
+
+
 const EditGoal = () => {
 
-    const { goals } = useAuth();
-
+    const location = useLocation();
     const navigate = useNavigate();
+
+    // this gets where the user came from 
+    const from = location?.state?.from?.pathname || "/";
+
+    const { goals, setGoals } = useAuth();
+
 
     const goalPrivate = useAxiosPrivate();
 
@@ -28,9 +35,10 @@ const EditGoal = () => {
         e.preventDefault();
         const data = {text: editGoal}
         try {
-            await goalPrivate.put(`/goals/${id}`, data);
+            const response = await goalPrivate.put(`/goals/${id}`, data);
             setEditGoal("");
-            navigate("/");
+            setGoals(response.data)
+            navigate(from);
         } catch (error) {
             console.error(error.message);
         }
@@ -62,7 +70,7 @@ const EditGoal = () => {
                                         id="goal"
                                         className="form-control me-2"
                                     />
-                                    <button className="btn btn-primary"><FaPlus /></button>
+                                    <button className="btn btn-primary"><FaPen /></button>
                                 </div>
                             </div>
                         </form>
