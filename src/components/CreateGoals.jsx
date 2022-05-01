@@ -76,6 +76,8 @@ const CreateNotes = () => {
         try {
             const response = await goalPrivate.delete(`/goals/${id}`);
             setGoals(response.data);
+            // inbuilt-notification
+            toast.success('successful');
         } catch (error) {
             console.error(error.message)
         }
