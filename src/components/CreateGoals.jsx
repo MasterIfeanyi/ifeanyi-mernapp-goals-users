@@ -35,10 +35,10 @@ const CreateNotes = () => {
                     signal: controller.signal
                 })
                 console.log(response?.data);
-                // set users state when component mounts
+                // set goals state when component mounts
                 isMounted && setGoals(response?.data);
             } catch (error) {
-                console.error(error);
+                console.log(error.message);
                 // when refreshToken expires
                 navigate("/login", { state: { from: location }, replace: true });
             }
