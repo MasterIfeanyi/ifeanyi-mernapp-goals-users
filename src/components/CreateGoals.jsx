@@ -21,6 +21,7 @@ const CreateNotes = () => {
     
     const goalPrivate = useGoalPrivate();
 
+    const [errorMessage, setErrorMessage] = useState("")
 
 
     useEffect(() => {
@@ -37,10 +38,24 @@ const CreateNotes = () => {
                 console.log(response?.data);
                 // set goals state when component mounts
                 isMounted && setGoals(response?.data);
+                setErrorMessage("")
             } catch (error) {
-                console.log(error.message);
+
+                // console.log(error.message);
+
                 // when refreshToken expires
-                navigate("/login", { state: { from: location }, replace: true });
+
+                if (process.env.NODE_ENV === "development" || error) {
+                    console.log(errorMessage);
+                    console.log(error.message);
+                } else {
+                    navigate("/login", { state: { from: location }, replace: true });
+                }
+                // if (errorMessage) {
+                //     navigate("/login", { state: { from: location }, replace: true });
+                // }
+                
+                setErrorMessage(error.message);
             }
         }
 
@@ -51,7 +66,7 @@ const CreateNotes = () => {
             // don't set state if component unmounts
             isMounted = false;
             // cancel request if component unmounts
-            // controller.abort();
+            controller.abort();
         }
         
         // eslint-disable-next-line react-hooks/exhaustive-deps
