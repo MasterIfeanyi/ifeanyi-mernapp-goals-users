@@ -39,8 +39,12 @@ const Users = () => {
                 // set users state when component mounts
                 isMounted && setUsers(response?.data);
             } catch (error) {
-                console.error(error.message);
-                navigate("/login", { state: { from: location }, replace: true });
+                // when refreshToken expires
+                if (process.env.NODE_ENV === "development" || error) {
+                    console.log(error.message);
+                } else {
+                    navigate("/login", { state: { from: location }, replace: true });
+                }
             }
         }
 
@@ -51,7 +55,7 @@ const Users = () => {
             // don't set state if component unmounts
             isMounted = false;
             // cancel request if component unmounts
-            // controller.abort();
+            controller.abort();
         }
         
         // eslint-disable-next-line react-hooks/exhaustive-deps

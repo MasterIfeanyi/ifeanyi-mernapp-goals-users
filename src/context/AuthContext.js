@@ -20,7 +20,9 @@ export const AuthProvider = ({children}) => {
         // if used in more components, this should be in context
         try {
             // axios to /logout endpoint 
-            await axios.get("/logout");
+            await axios.get("/logout", {
+                withCredentials: true
+            });
             navigate('login');
             setAuth({});
         } catch (error) {
