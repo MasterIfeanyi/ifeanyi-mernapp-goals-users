@@ -39,10 +39,10 @@ const Users = () => {
                 // set users state when component mounts
                 isMounted && setUsers(response?.data);
             } catch (error) {
-                // when refreshToken expires
-                if (process.env.NODE_ENV === "development" || error) {
+                if (process.env.NODE_ENV === "production" && error) {
                     console.log(error.message);
                 } else {
+                    // when refreshToken expires
                     navigate("/login", { state: { from: location }, replace: true });
                 }
             }
