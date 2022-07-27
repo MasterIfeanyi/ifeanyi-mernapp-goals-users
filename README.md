@@ -3,7 +3,7 @@
 Chima Ifeanyi ThankGod
 ## Description
 
-This is a simple project that allows a user to register, log-in and and the goals they hope to achieve.
+This is a simple project that allows a user to register, log-in and save the goals they hope to achieve.
 
 ## React
 
