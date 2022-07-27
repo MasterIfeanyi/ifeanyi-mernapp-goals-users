@@ -1,4 +1,29 @@
-# Refrences
+# Getting started
+
+Chima Ifeanyi ThankGod
+## Description
+
+This is a simple project that allows a user to register, log-in and and the goals they hope to achieve.
+
+## React
+
+This project was bootstrapped with create-react-app. `npx create-react-app .`
+
+## Project Set-up
+
+The dependencies required are all included in the `package.json` file. They will all be installed by running the `npm install` command.
+
+To start the project run `npm start`.
+
+## Check out the web app
+
+click the link below
+
+Open [Ifeanyi-goals-app](https://ifeanyi-mernapp-goals-users.netlify.app) to view it in the browser.
+
+
+
+# Issues
 
 ## CORS 
 
